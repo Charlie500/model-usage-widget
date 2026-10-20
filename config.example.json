@@ -1,0 +1,12 @@
+{
+  "refreshMinutes": 10,
+  "types": ["Text"],
+  "warnPercent": 20,
+  "criticalPercent": 8,
+  "notifyCooldownHours": 12,
+  "showRecentUsage": true,
+  "recentDays": 7,
+  "autoRelogin": true,
+  "reloginCooldownMinutes": 15,
+  "showCodex": true
+}

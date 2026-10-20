@@ -1,0 +1,15 @@
+# 运行时文件，不进版本库
+config.json
+state.json
+widget.log
+icon.ico
+
+# 系统 / 编辑器
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# 临时文件
+*.tmp
+*.bak
