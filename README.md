@@ -4,6 +4,8 @@ Windows 桌面小挂件：常驻显示**阿里云百炼各模型免费额度**�
 
 无 Electron、无第三方依赖 —— 纯 PowerShell 5.1 + WinForms，启动即用。
 
+> 非官方个人项目，与阿里云、OpenAI 无关联，不代表官方立场。
+
 ![preview](preview.png)
 
 ## 从 GitHub 克隆
@@ -87,6 +89,14 @@ Codex 快照字段示例：`primary.used_percent`、`window_minutes`（10080 = �
 2. 删除目录 `%USERPROFILE%\Documents\ModelUsageWidget`；
 3. 删除桌面快捷方式「百炼模型消耗」；
 4. 若开过自启：删除 `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ModelUsageWidget.lnk`。
+
+## 免责声明
+
+- 本项目为个人非官方工具，与阿里云、OpenAI / Codex 官方**无任何关联**，不代表官方立场。
+- 百炼数据通过官方 `bl` CLI 读取；Codex 数据仅解析**本机会话日志快照**，不调用、不绕过任何官方接口，也不把任何数据上传到第三方。
+- Codex 会话日志的 `rate_limits` 字段并非公开协议，可能随版本变化导致该卡片失效，属于预期风险。
+- 软件按 MIT 协议「按原样」提供，不提供任何明示或暗示担保，使用风险自负。
+- 文中出现的产品名与商标（阿里云、百炼、Codex 等）归各自所有者，仅用于说明兼容对象。
 
 ## 常见问题
 
