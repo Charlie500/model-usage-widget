@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build zip and publish release
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build package
+        shell: pwsh
+        run: |
+          $tag = if ($env:GITHUB_REF -like 'refs/tags/*') { $env:GITHUB_REF -replace '^refs/tags/', '' } else { 'dev' }
+          $stage = Join-Path $env:RUNNER_TEMP 'pkg'
+          New-Item -ItemType Directory -Force -Path $stage | Out-Null
+          $files = @('ModelUsageWidget.ps1', 'start-widget.vbs', 'install.ps1', 'config.example.json', 'README.md', 'README.en.md', 'LICENSE')
+          foreach ($f in $files) {
+            if (Test-Path $f) { Copy-Item $f (Join-Path $stage $f) }
+          }
+          $zip = Join-Path $env:RUNNER_TEMP ("model-usage-widget-$tag.zip")
+          Compress-Archive -Path (Join-Path $stage '*') -DestinationPath $zip
+          "ZIP_PATH=$zip" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "TAG_NAME=$tag" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+      - name: Create GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $notes = @"
+          Bailian / Codex quota desktop widget $env:TAG_NAME
+
+          Requirements: Windows 10/11, PowerShell 5.1, and the Bailian CLI (bl) logged in.
+
+          Unzip and run install.ps1 to create the desktop shortcut.
+          "@
+          gh release create $env:TAG_NAME $env:ZIP_PATH --title "Release $env:TAG_NAME" --notes $notes

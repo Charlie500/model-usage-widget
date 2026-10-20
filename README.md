@@ -1,10 +1,17 @@
 # 百炼 / Codex 额度桌面小组件
 
+[![CI](https://github.com/Charlie500/model-usage-widget/actions/workflows/ci.yml/badge.svg)](https://github.com/Charlie500/model-usage-widget/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)]()
+[![PowerShell](https://img.shields.io/badge/PowerShell-5.1-5391FE.svg)]()
+
 Windows 桌面小挂件：常驻显示**阿里云百炼各模型免费额度**与**Codex 额度**，剩余快耗尽时弹 Windows 通知。
 
 无 Electron、无第三方依赖 —— 纯 PowerShell 5.1 + WinForms，启动即用。
 
 > 非官方个人项目，与阿里云、OpenAI 无关联，不代表官方立场。
+
+[English](README.en.md) | 简体中文
 
 ![preview](preview.png)
 
@@ -91,6 +98,11 @@ Codex 快照字段示例：`primary.used_percent`、`window_minutes`（10080 = �
 2. 删除目录 `%USERPROFILE%\Documents\ModelUsageWidget`；
 3. 删除桌面快捷方式「百炼模型消耗」；
 4. 若开过自启：删除 `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\ModelUsageWidget.lnk`。
+
+## 开发与 CI
+
+- [`.github/workflows/ci.yml`](.github/workflows/ci.yml)：用 **Windows PowerShell 5.1** 解析全部 `*.ps1`（防编码/语法回归），并运行 **PSScriptAnalyzer**（Error 级失败）。
+- [`.github/workflows/release.yml`](.github/workflows/release.yml)：推送 `v*` tag 时自动打包 zip 并创建 GitHub Release。
 
 ## 免责声明
 
