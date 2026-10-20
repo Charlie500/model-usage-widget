@@ -8,6 +8,8 @@ Windows 桌面小挂件：常驻显示**阿里云百炼各模型免费额度**�
 
 ![preview](preview.png)
 
+*预览图为作者本机示例数据。*
+
 ## 从 GitHub 克隆
 
 ```powershell
